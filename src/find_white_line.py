@@ -32,4 +32,4 @@ def find_centroid(image):
         return cx
     return None
 
-find_centroid(None)
+# find_centroid(None)
