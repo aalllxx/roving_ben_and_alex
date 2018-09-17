@@ -6,10 +6,12 @@ import cv2
 import time
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
+from find_white_line import _mask_white
 
 def display_im(msg):
     try:
         im = bridge.imgmsg_to_cv2(msg, "bgr8")
+        im = _mask_white(im)
         cv2.imshow('f',im)
         cv2.waitKey(1)
     except CvBridgeError as e:
