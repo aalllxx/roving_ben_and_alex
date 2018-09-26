@@ -8,9 +8,7 @@ project(roving_ben_and_alex)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  rospy
-  std_msgs
+  actionlib_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -49,27 +47,24 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate messages in the 'msg' folder
 # add_message_files(
 #   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+#   )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+add_service_files(
+   FILES
+   FindWhiteLine.srv
+ )
 
 ## Generate actions in the 'action' folder
 # add_action_files(
-#   FILES
-#   Action1.action
-#   Action2.action
+#   DIRECTORY action
+#   FILES Timer.action
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
+#generate_messages(
 #   DEPENDENCIES
+#   actionlib_msgs
 #   std_msgs
 # )
 
@@ -80,7 +75,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## To declare and build dynamic reconfigure parameters within this
 ## package, follow these steps:
 ## * In the file package.xml:
-##   * add a build_depend and a exec_depend tag for "dynamic_reconfigure"
+##   * add a build_depend and a exec_depend tag for "dynamic_reconfigre"
 ## * In this file (CMakeLists.txt):
 ##   * add "dynamic_reconfigure" to
 ##     find_package(catkin REQUIRED COMPONENTS ...)
@@ -102,12 +97,9 @@ find_package(catkin REQUIRED COMPONENTS
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
-catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES roving_ben_and_alex
-#  CATKIN_DEPENDS roscpp rospy std_msgs
-#  DEPENDS system_lib
-)
+#catkin_package(
+#  CATKIN_DEPENDS actionlib_msgs
+#)
 
 ###########
 ## Build ##
@@ -122,7 +114,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/roving_ben_and_alex.cpp
+#   src/${PROJECT_NAME}/rosbook.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -133,7 +125,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/roving_ben_and_alex_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/rosbook_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -190,7 +182,7 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_roving_ben_and_alex.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_rosbook.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

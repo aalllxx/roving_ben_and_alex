@@ -3,6 +3,9 @@
 import cv2
 import os
 import numpy as np
+import rospy
+
+# util to find the center of mass of white line in an image
 
 def _load_image():
     image = cv2.imread('/home/alexander-feldman/image.jpeg')
@@ -32,5 +35,3 @@ def find_centroid(image):
         # print("centroid is {}, im width is {}".format(cx,image.shape[1]))
         return cx, cy
     return None, None
-
-# find_centroid(None)
