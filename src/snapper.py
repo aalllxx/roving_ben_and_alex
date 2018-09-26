@@ -22,19 +22,19 @@ def _take_photo():
     del(camera)  # so that others can use the camera as soon as possible
     return image
 
-# rospy.init_node('fiducials_camera')
-# bridge = CvBridge()
-# pub = rospy.Publisher("captured_images", Image, queue_size=1)
-# rate = rospy.Rate(4)
-# while not rospy.is_shutdown():
-#     try:
-#         pub.publish(snap_image())
-#     except TypeError as e:
-#         print (e)
-#     rate.sleep()
-
+rospy.init_node('fiducials_camera')
 bridge = CvBridge()
-im = _take_photo()
-print(type(im))
-cv2.imshow('f', snap_image())
-cv2.waitKey(0)
+pub = rospy.Publisher("camera/image_raw", Image, queue_size=1)
+rate = rospy.Rate(4)
+while not rospy.is_shutdown():
+    try:
+        pub.publish(snap_image())
+    except TypeError as e:
+        print (e)
+    rate.sleep()
+
+# bridge = CvBridge()
+# im = _take_photo()
+# print(type(im))
+# cv2.imshow('f', snap_image())
+# cv2.waitKey(0)
