@@ -3,7 +3,9 @@
 import cv2
 import os
 import numpy as np
-from roving_ben_and_alex.srv import FindWhiteLine
+import rospy
+
+# util to find the center of mass of white line in an image
 
 def _load_image():
     image = cv2.imread('/home/alexander-feldman/image.jpeg')
@@ -33,9 +35,3 @@ def find_centroid(image):
         # print("centroid is {}, im width is {}".format(cx,image.shape[1]))
         return cx, cy
     return None, None
-
-rospy.init_node("find_line_service")
-service = rospy.Service("find_white_line", FindWhiteLine, find_centroid)
-rospy.spin()
-
-# find_centroid(None)
