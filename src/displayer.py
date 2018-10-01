@@ -4,7 +4,7 @@ import sys
 import rospy
 import cv2
 import time
-from sensor_msgs.msg import Image
+from sensor_msgs.msg import CompressedImage
 from cv_bridge import CvBridge, CvBridgeError
 from find_white_line import _mask_white
 
@@ -12,7 +12,7 @@ from find_white_line import _mask_white
 
 def display_im(msg):
     try:
-        im = bridge.imgmsg_to_cv2(msg, "bgr8")
+        im = bridge.compressed_imgmsg_to_cv2(msg, "bgr8")
         im = _mask_white(im) if len(sys.argv) > 2 and sys.argv[2] == "bw" else im
         cv2.imshow('f',cv2.resize(im,  (0, 0), fx=3, fy=3))
         cv2.waitKey(1)
@@ -22,6 +22,6 @@ def display_im(msg):
 
 
 rospy.init_node('displayer')
-sub = rospy.Subscriber("captured_images", Image ,display_im)
+sub = rospy.Subscriber("/camera/image/compressed", CompressedImage ,display_im)
 bridge = CvBridge()
 rospy.spin()
