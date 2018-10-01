@@ -32,9 +32,3 @@ while not rospy.is_shutdown():
     except TypeError as e:
         print (e)
     rate.sleep()
-
-# bridge = CvBridge()
-# im = _take_photo()
-# print(type(im))
-# cv2.imshow('f', snap_image())
-# cv2.waitKey(0)
